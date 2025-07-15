@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= chat.title %> | Chat</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: #f4f4f4;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .chat-container {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .message {
+      margin: 10px 0;
+      max-width: 60%;
+      padding: 10px 15px;
+      border-radius: 10px;
+      line-height: 1.4em;
+    }
+    .user {
+      background: #d0eaff;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+    .ai {
+      background: #eee;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+    form.message-form {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #ccc;
+    }
+    form.message-form input {
+      flex: 1;
+      padding: 10px;
+    }
+    form.message-form button {
+      padding: 10px 20px;
+      margin-left: 10px;
+    }
+    .actions {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header (Rename/Delete/Export) -->
+  <header>
+    <form method="POST" action="/chat/<%= chat._id %>/rename">
+      <input type="text" name="title" value="<%= chat.title %>" required />
+      <button type="submit">Rename</button>
+    </form>
+
+    <div class="actions">
+      <form method="POST" action="/chat/<%= chat._id %>/delete" style="display:inline;">
+        <button type="submit" onclick="return confirm('Delete this chat?')">🗑 Delete</button>
+      </form>
+      <a href="/chat/<%= chat._id %>/export">⬇ Export</a>
+      <a href="/chat/dashboard">🏠 Back</a>
+    </div>
+  </header>
+
+  <!-- Chat messages -->
+  <div class="chat-container">
+    <% chat.messages.forEach(msg => { %>
+      <div class="message <%= msg.sender === 'user' ? 'user' : 'ai' %>">
+        <strong><%= msg.sender === 'user' ? 'You' : 'AI' %>:</strong><br/>
+        <%= msg.text %>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- Message input -->
+  <form class="message-form" method="POST" action="/chat/<%= chat._id %>/message">
+    <input type="text" name="text" placeholder="Type your message..." required />
+    <button type="submit">Send</button>
+  </form>
+
+</body>
+</html>

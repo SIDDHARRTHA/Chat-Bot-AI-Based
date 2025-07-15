@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="UTF-8">
+  <title>Your Chats</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background: #f0f0f0;
+      padding: 20px;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .main-panel {
+      flex: 1;
+      padding: 40px;
+    }
+    .chat-list {
+      list-style: none;
+      padding: 0;
+    }
+    .chat-list li {
+      margin: 8px 0;
+    }
+    .chat-list a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    form {
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 6px;
+      margin-right: 5px;
+    }
+    button {
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    hr {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <%- include("../partials/navbar") %>
+  <div class="sidebar">
+    <h2>💬 Chat Sessions</h2>
+
+    <!-- Search -->
+    <form method="GET" action="/chat/search">
+      <input type="text" name="q" placeholder="Search chats..." />
+      <button type="submit">🔍</button>
+    </form>
+
+    <!-- New Chat -->
+    <form method="POST" action="/chat/new">
+      <button type="submit">➕ New Chat</button>
+    </form>
+
+    <hr/>
+
+    <!-- Chat list -->
+    <ul class="chat-list">
+      <% if (chats.length === 0) { %>
+        <li>No chats yet.</li>
+      <% } else { %>
+        <% chats.forEach(chat => { %>
+          <li><a href="/chat/<%= chat._id %>"><%= chat.title %></a></li>
+        <% }) %>
+      <% } %>
+    </ul>
+
+    <hr/>
+    <a href="/auth/logout">🚪 Logout</a>
+  </div>
+
+  <div class="main-panel">
+    <h1>Welcome to your dashboard</h1>
+  </div>
+
+</body>
+</html>
