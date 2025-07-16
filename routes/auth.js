@@ -43,9 +43,15 @@ router.post('/login', async (req, res) => {
     return res.redirect('/auth/login');
   }
 
+  // ✅ Save session
   req.session.userId = user._id;
+
+  // 🐞 Debug session data
+  console.log('Session saved:', req.session);
+
   res.redirect('/chat/dashboard');
 });
+
 
 /* ✅ Logout */
 router.get('/logout', (req, res) => {

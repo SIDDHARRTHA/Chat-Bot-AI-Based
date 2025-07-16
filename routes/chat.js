@@ -27,6 +27,16 @@ router.post('/new', requireLogin, async (req, res) => {
   res.redirect(`/chat/${chat._id}`);
 });
 
+/* ------------------ Search Chats ------------------ */
+router.get('/search', requireLogin, async (req, res) => {
+  const q = req.query.q;
+  const chats = await Chat.find({
+    userId: req.session.userId,
+    title: { $regex: q, $options: 'i' }
+  });
+  res.render('chat/dashboard', { chats });
+});
+
 /* ------------------ View Chat ------------------ */
 router.get('/:id', requireLogin, async (req, res) => {
   const chat = await Chat.findOne({ _id: req.params.id, userId: req.session.userId }).populate('messages');
@@ -102,13 +112,6 @@ router.get('/:id/export', requireLogin, async (req, res) => {
 });
 
 /* ------------------ Search Chats ------------------ */
-router.get('/search', requireLogin, async (req, res) => {
-  const q = req.query.q;
-  const chats = await Chat.find({
-    userId: req.session.userId,
-    title: { $regex: q, $options: 'i' }
-  });
-  res.render('chat/dashboard', { chats });
-});
+
 
 module.exports = router;

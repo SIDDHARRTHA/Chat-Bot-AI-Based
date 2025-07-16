@@ -40,7 +40,7 @@ This app allows users to register/login, start new chat sessions, interact with 
 |---------------|-------------------------------|
 | Frontend      | EJS (Embedded JavaScript)     |
 | Backend       | Node.js, Express              |
-| Database      | MongoDB + Mongoose            |
+| Database      | MongoDB Atlas + Mongoose      |
 | AI Model      | Gemini 2.0 Flash (via API)    |
 | Auth & Session| express-session + connect-mongo |
 | Styling       | CSS (basic)                   |
@@ -76,12 +76,15 @@ ai-chat-app/
 
 ---
 
+
 ## 🔐 Environment Variables (`.env`)
 
-```env
-MONGO_URI=mongodb://localhost:27017/ai-chat-app
+```
+MONGO_URI=your_mongodb_atlas_connection_string
 GEMINI_API_KEY=your_google_api_key_here
 ```
+
+> **Note:** This project now uses [MongoDB Atlas](https://www.mongodb.com/atlas) for cloud database hosting. Set your `MONGO_URI` to the Atlas connection string from your cluster dashboard.
 
 ---
 
@@ -98,17 +101,20 @@ GEMINI_API_KEY=your_google_api_key_here
 
 ## 📦 Installation
 
+
 ```bash
 git clone https://github.com/yourname/ai-chat-app.git
 cd ai-chat-app
 npm install
 ```
 
+
 Set up `.env`:
 ```bash
 cp .env.example .env
-# Then edit it and add Mongo URI and Gemini API Key
+# Then edit it and add your MongoDB Atlas URI and Gemini API Key
 ```
+
 
 Start the app:
 ```bash
@@ -117,7 +123,20 @@ node app.js
 npx nodemon app.js
 ```
 
+
 App runs at: http://localhost:3000
+
+---
+
+## 📤 Deployment & Version Control
+
+After making changes, push your code to GitHub:
+
+```bash
+git add .
+git commit -m "Update MongoDB Atlas connection and docs"
+git push
+```
 
 ---
 
