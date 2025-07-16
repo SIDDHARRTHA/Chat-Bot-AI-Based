@@ -134,7 +134,7 @@ After making changes, push your code to GitHub:
 
 ```bash
 git add .
-git commit -m "Update MongoDB Atlas connection and docs"
+git commit -m "DONE 👍 WE ARE GOOD TO GO"
 git push
 ```
 
