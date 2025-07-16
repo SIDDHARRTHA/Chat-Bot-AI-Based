@@ -77,14 +77,16 @@ ai-chat-app/
 ---
 
 
-## 🔐 Environment Variables (`.env`)
+## 🔐 Environment Variables
+
+You can set the following environment variables globally (in your system, hosting dashboard, or a `.env` file):
 
 ```
 MONGO_URI=your_mongodb_atlas_connection_string
 GEMINI_API_KEY=your_google_api_key_here
 ```
 
-> **Note:** This project now uses [MongoDB Atlas](https://www.mongodb.com/atlas) for cloud database hosting. Set your `MONGO_URI` to the Atlas connection string from your cluster dashboard.
+> **Note:** This project uses [MongoDB Atlas](https://www.mongodb.com/atlas) for cloud database hosting. Set your `MONGO_URI` to the Atlas connection string from your cluster dashboard. You may set these variables globally or in a `.env` file for local development.
 
 ---
 
