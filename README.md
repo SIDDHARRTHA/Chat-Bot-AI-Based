@@ -126,7 +126,42 @@ npx nodemon app.js
 ```
 
 
+
 App runs at: http://localhost:3000
+
+---
+
+## 🌐 Live Deployment
+
+The app is deployed and accessible at:
+
+👉 http://13.232.89.233/auth/login
+
+### Deploying to AWS EC2
+
+1. Launch an EC2 instance (Ubuntu recommended).
+2. Install Node.js, npm, and git.
+3. Clone your repository:
+   ```bash
+   git clone https://github.com/SIDDHARRTHA/Chat-Bot-AI-Based.git
+   cd Chat-Bot-AI-Based
+   npm install
+   ```
+4. Set environment variables globally or in a `.env` file (see above).
+5. Start the app:
+   ```bash
+   node app.js
+   # or
+   npx nodemon app.js
+   ```
+6. Open port 3000 in your EC2 security group.
+7. Visit `http://<your-ec2-public-ip>:3000` in your browser.
+
+---
+
+## 📸 Preview
+
+Screenshots updated for deployed version:
 
 ---
 
